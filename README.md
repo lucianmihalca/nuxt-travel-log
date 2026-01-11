@@ -1,7 +1,6 @@
 # Nuxt Travel Log
 
-Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to
-learn more.
+Look at the [Nuxt documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
 
 ## Setup
 
@@ -9,7 +8,6 @@ Make sure to install dependencies:
 
 ```bash
 pnpm install
-
 ```
 
 ## Development Server
@@ -18,6 +16,17 @@ Start the development server on `http://localhost:3000`:
 
 ```bash
 pnpm dev
+```
+
+This runs both the Nuxt server and Turso database locally.
+
+## Database Commands
+
+```bash
+pnpm dev:db               # Start local Turso database
+pnpm drizzle-kit generate # Generate migrations from schemas
+pnpm drizzle-kit migrate  # Apply migrations to database
+pnpm drizzle-kit studio   # Open database visual interface
 ```
 
 ## Production
