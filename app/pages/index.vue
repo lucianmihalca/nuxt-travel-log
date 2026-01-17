@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+const authSore = useAuthStore();
+</script>
+
 <template>
   <div class="hero bg-base-300 container mx-auto mt-4">
     <div class="hero-content text-center min-h-96">
@@ -8,7 +12,14 @@
         <p class="py-6">
           Keep track of your adventures and journeys with Travel Log. Log your trips, share experiences, and explore new destinations all in one place.
         </p>
-        <AuthButton />
+        <AuthButton v-if="!authSore.user" />
+        <NuxtLink
+          v-else
+          to="/dashboard"
+          class="btn btn-primary"
+        >
+          Start Logging
+        </NuxtLink>
       </div>
     </div>
   </div>
