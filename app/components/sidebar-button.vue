@@ -16,33 +16,38 @@ const route = useRoute();
     :class="{ tooltip: !showLabel }"
   >
     <NuxtLink
-      :class="{ 'bg-base-200': route.path === props.href, 'justify-center': !showLabel, 'justify-start': showLabel }"
+      :class="{ 'bg-base-200': route.path === props.href }"
       :to="props.href"
-      class="flex gap-2 p-2 hover:bg-base-300 hover:cursor-pointer flex-nowrap transition-all duration-400"
+      class="flex gap-2 p-2 hover:bg-base-300 hover:cursor-pointer whitespace-nowrap"
     >
-      <Icon :name="props.icon" size="24" />
-      <Transition name="grow">
-        <span v-if="showLabel">
-          {{ props.label }}
-        </span>
-      </Transition>
+      <!-- Div 1: Icon  -->
+      <div class="w-12 flex justify-center items-center shrink-0">
+        <Icon :name="props.icon" size="24" />
+      </div>
+
+      <!-- Div 2: Text with transition -->
+      <div>
+        <Transition name="grow">
+          <span v-if="showLabel">
+            {{ props.label }}
+          </span>
+        </Transition>
+      </div>
     </NuxtLink>
   </div>
 </template>
 
 <style lang="css" scoped>
-.grow-enter-active {
-  animation: grow 0.4s;
-}
+.grow-enter-active,
 .grow-leave-active {
-  animation: grow 0.4s ease reverse;
+  transition:
+    opacity 0.4s,
+    transform 0.4s;
 }
-@keyframes grow {
-  0% {
-    transform: scale(0);
-  }
-  100% {
-    transform: scale(1);
-  }
+
+.grow-enter-from,
+.grow-leave-to {
+  opacity: 0;
+  transform: translateX(-10px);
 }
 </style>
