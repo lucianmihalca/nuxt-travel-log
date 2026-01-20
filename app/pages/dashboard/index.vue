@@ -1,13 +1,8 @@
 <script lang="ts" setup>
-const isSidebarOpen = ref(true);
-
-onMounted(() => {
-  isSidebarOpen.value = localStorage.getItem("isSidebarOpen") === "true";
-});
+const isSidebarOpen = useCookie<boolean>("isSidebarOpen", { default: () => true });
 
 function toggleSidebar() {
   isSidebarOpen.value = !isSidebarOpen.value;
-  localStorage.setItem("isSidebarOpen", isSidebarOpen.value.toString());
 }
 </script>
 
@@ -22,10 +17,12 @@ function toggleSidebar() {
         :class="{ 'justify-center': !isSidebarOpen, 'justify-end': isSidebarOpen }"
         @click="toggleSidebar"
       >
-        <Icon
-          :name="isSidebarOpen ? 'tabler:chevron-left' : 'tabler:chevron-right'"
-          size="32"
-        />
+        <div class="w-12 flex justify-center items-center shrink-0">
+          <Icon
+            :name="isSidebarOpen ? 'tabler:chevron-left' : 'tabler:chevron-right'"
+            size="32"
+          />
+        </div>
       </div>
       <div class="flex flex-col gap-1 flex-1">
         <!-- Grupo de arriba -->
