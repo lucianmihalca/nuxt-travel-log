@@ -9,22 +9,10 @@ function toggleSidebar() {
 <template>
   <div class="flex flex-1">
     <div
-      class="bg-base-100 transition-all duration-400 flex flex-col"
-      :class="{ 'w-64': isSidebarOpen, 'w-16': !isSidebarOpen }"
+      class="bg-base-100 transition-all duration-400 flex flex-col border-r border-base-300 "
+      :class=" isSidebarOpen ? 'w-64 px-2' : 'w-16'"
     >
-      <div
-        class="flex hover: cursor-pointer hover:bg-base-200 p-2"
-        :class="{ 'justify-center': !isSidebarOpen, 'justify-end': isSidebarOpen }"
-        @click="toggleSidebar"
-      >
-        <div class="w-12 flex justify-center items-center shrink-0">
-          <Icon
-            :name="isSidebarOpen ? 'tabler:chevron-left' : 'tabler:chevron-right'"
-            size="32"
-          />
-        </div>
-      </div>
-      <div class="flex flex-col gap-1 flex-1">
+      <div class="flex flex-col gap-1 flex-1 py-2">
         <!-- Grupo de arriba -->
         <div class="flex flex-col gap-1">
           <SidebarButton
@@ -42,12 +30,13 @@ function toggleSidebar() {
           />
         </div>
         <!-- Grupo de abajo -->
-        <div class="mt-auto mb-2 flex flex-col">
+        <div class="mt-auto flex flex-col">
           <SidebarButton
             :show-label="isSidebarOpen"
-            label="Sign Out"
+            label="Open Sidebar"
             icon="tabler:logout-2"
-            href="/sign-out"
+            icon-closed="tabler:logout"
+            :on-click="toggleSidebar"
           />
         </div>
       </div>
