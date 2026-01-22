@@ -1,9 +1,11 @@
 <script lang="ts" setup>
 const props = defineProps<{
-  label: string;
+  label?: string;
   icon: string;
-  href: string;
+  href?: string;
   showLabel: boolean;
+  iconClosed?: string;
+  onClick?: () => void;
 }>();
 
 const route = useRoute();
@@ -16,11 +18,13 @@ const route = useRoute();
     :class="{ tooltip: !showLabel }"
   >
     <NuxtLink
-      :class="{ 'bg-base-200': route.path === props.href }"
+      v-if="href"
       :to="props.href"
-      class="flex gap-2 p-2 hover:bg-base-300 hover:cursor-pointer whitespace-nowrap overflow-hidden"
+      class="flex gap-2 p-2 hover:bg-base-300 hover:cursor-pointer hover:rounded-md whitespace-nowrap overflow-hidden"
+      :class="{ 'bg-base-200 rounded-md': route.path === props.href }"
+      @click="onClick"
     >
-      <div class="w-12 flex justify-center items-center shrink-0 ">
+      <div class="w-12 flex justify-center items-center shrink-0">
         <Icon :name="props.icon" size="24" />
       </div>
 
@@ -32,6 +36,16 @@ const route = useRoute();
         </span>
       </Transition>
     </NuxtLink>
+
+    <button
+      v-else
+      class="flex gap-2 p-2 hover:bg-base-300 hover:cursor-pointer hover:rounded-md whitespace-nowrap overflow-hidden w-full"
+      @click="onClick"
+    >
+      <div class="w-12 flex justify-center items-center shrink-0">
+        <Icon :name="showLabel ? props.icon : (props.iconClosed || props.icon)" size="24" />
+      </div>
+    </button>
   </div>
 </template>
 
