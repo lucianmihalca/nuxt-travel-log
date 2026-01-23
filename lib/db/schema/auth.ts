@@ -8,6 +8,7 @@ export const user = sqliteTable("user", {
   image: text("image"),
   createdAt: integer().notNull(),
   updatedAt: integer().notNull(),
+  sidebarOpen: integer({ mode: "boolean" }).default(true),
 });
 
 export const session = sqliteTable("session", {
