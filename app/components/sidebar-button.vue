@@ -20,12 +20,19 @@ const route = useRoute();
     <NuxtLink
       v-if="href"
       :to="props.href"
-      class="flex gap-2 p-2 hover:bg-base-300 hover:cursor-pointer hover:rounded-md whitespace-nowrap overflow-hidden"
-      :class="{ 'bg-base-200 rounded-md': route.path === props.href }"
+      class="flex items-center gap-2 p-2 transition-colors duration-300 group whitespace-nowrap overflow-hidden border border-transparent hover:border-base-content/10"
+      :class="[route.path === props.href
+        ? 'bg-primary/10 text-base-content/80 rounded-lg'
+        : 'hover:bg-primary/10 hover:rounded-lg text-base-content/80 hover:text-base-content',
+      ]"
       @click="onClick"
     >
       <div class="w-12 flex justify-center items-center shrink-0">
-        <Icon :name="props.icon" size="24" />
+        <Icon
+          :name="props.icon"
+          size="24"
+          class="transition-transform duration-300 group-hover:scale-110"
+        />
       </div>
 
       <Transition
@@ -39,11 +46,15 @@ const route = useRoute();
 
     <button
       v-else
-      class="flex gap-2 p-2 hover:bg-base-300 hover:cursor-pointer hover:rounded-md whitespace-nowrap overflow-hidden w-full"
+      class="flex items-center gap-2 p-2 transition-colors duration-300 hover:bg-primary/10 hover:cursor-pointer hover:rounded-lg whitespace-nowrap overflow-hidden w-full group border border-transparent hover:border-base-content/10"
       @click="onClick"
     >
       <div class="w-12 flex justify-center items-center shrink-0">
-        <Icon :name="showLabel ? props.icon : (props.iconClosed || props.icon)" size="24" />
+        <Icon
+          :name="showLabel ? props.icon : (props.iconClosed || props.icon)"
+          size="24"
+          class="transition-transform duration-300 group-hover:scale-110"
+        />
       </div>
     </button>
   </div>
