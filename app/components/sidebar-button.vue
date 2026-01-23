@@ -46,7 +46,7 @@ const route = useRoute();
 
     <button
       v-else
-      class="flex items-center gap-2 p-2 transition-colors duration-300 hover:bg-primary/10 hover:cursor-pointer hover:rounded-lg whitespace-nowrap overflow-hidden w-full group border border-transparent hover:border-base-content/10"
+      class="flex gap-2 p-2 transition-colors duration-300 hover:bg-primary/10 hover:cursor-pointer hover:rounded-lg whitespace-nowrap overflow-hidden w-full group border border-transparent hover:border-base-content/10"
       @click="onClick"
     >
       <div class="w-12 flex justify-center items-center shrink-0">
