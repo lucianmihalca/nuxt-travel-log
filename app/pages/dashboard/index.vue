@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-const isSidebarOpen = useCookie<boolean>("isSidebarOpen", { default: () => true });
+const { sidebarOpen, setSidebarOpen } = await useUserPreferences();
 
 function toggleSidebar() {
-  isSidebarOpen.value = !isSidebarOpen.value;
+  setSidebarOpen(!sidebarOpen.value);
 }
 </script>
 
@@ -10,20 +10,20 @@ function toggleSidebar() {
   <div class="flex flex-1">
     <div
       class="bg-base-100 transition-all duration-400 flex flex-col border-r border-base-content/10 "
-      :class=" isSidebarOpen ? 'w-64 px-2' : 'w-16'"
+      :class=" sidebarOpen ? 'w-64 px-2' : 'w-16'"
     >
       <div class="flex flex-col gap-1 flex-1 py-2">
         <!-- SidebarContent -->
         <div class="flex flex-col gap-1">
           <SidebarButton
-            :show-label="isSidebarOpen"
+            :show-label="sidebarOpen"
             label="Locations"
             icon="tabler:map"
             href="/dashboard"
           />
 
           <SidebarButton
-            :show-label="isSidebarOpen"
+            :show-label="sidebarOpen"
             label="Add Locations"
             icon="tabler:flag-plus"
             href="/dashboard/add"
@@ -32,7 +32,7 @@ function toggleSidebar() {
         <div class="my-4 border-t border-base-content/10" />
 
         <SidebarButton
-          :show-label="isSidebarOpen"
+          :show-label="sidebarOpen"
           label="Sign Out"
           icon="tabler:logout-2"
           href="/sign-out"
@@ -40,7 +40,7 @@ function toggleSidebar() {
         <!-- SidebarFooter -->
         <div class="mt-auto pt-4 flex flex-col border-t border-base-content/10">
           <SidebarButton
-            :show-label="isSidebarOpen"
+            :show-label="sidebarOpen"
             label="Open Sidebar"
             icon="tabler:layout-sidebar-left-collapse"
             icon-closed="tabler:layout-sidebar-left-expand"
