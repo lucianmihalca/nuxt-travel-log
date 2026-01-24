@@ -20,6 +20,8 @@
     "@nuxtjs/color-mode": "4.0.0",
     "@pinia/nuxt": "0.11.3",
     "@tailwindcss/vite": "^4.1.18",
+    "@vueuse/core": "^14.1.0",
+    "@vueuse/nuxt": "^14.1.0",
     "better-auth": "1.4.10",
     "concurrently": "^9.2.1",
     "drizzle-orm": "^0.45.1",
