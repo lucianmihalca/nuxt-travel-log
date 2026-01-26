@@ -1,0 +1,20 @@
+{
+  "sidebar": {
+    "locations": "Locations",
+    "add_location": "Add Location",
+    "sign_out": "Sign Out",
+    "open_sidebar": "Open Sidebar"
+  },
+  "add_locations": {
+    "title": "Add Location",
+    "description": "A location is a place you have traveled or will travel to. It can be a city, country, state or point of interest. You can add specific times you visited this location after adding it.",
+    "form": {
+      "name": "Name",
+      "description": "Description",
+      "latitude": "Latitude",
+      "longitude": "Longitude",
+      "submit": "Add",
+      "cancel": "Cancel"
+    }
+  }
+}

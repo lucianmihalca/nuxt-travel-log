@@ -12,7 +12,18 @@ export default defineNuxtConfig({
     "@nuxtjs/color-mode",
     "@pinia/nuxt",
     "@vueuse/nuxt",
+    "@nuxtjs/i18n",
+    "@vee-validate/nuxt",
   ],
+  i18n: {
+    defaultLocale: "en",
+    langDir: "locales/",
+    locales: [
+      { code: "en", iso: "en-GB", name: "English", file: "en.json" },
+      { code: "es", iso: "es-ES", name: "Español", file: "es.json" },
+    ],
+    strategy: "prefix_except_default",
+  },
   css: ["./app/assets/css/main.css"],
   eslint: {
     config: {

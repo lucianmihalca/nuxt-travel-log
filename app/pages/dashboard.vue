@@ -17,31 +17,31 @@ function toggleSidebar() {
         <div class="flex flex-col gap-1">
           <SidebarButton
             :show-label="isSidebarOpen"
-            label="Locations"
+            :label="$t('sidebar.locations')"
             icon="tabler:map"
             href="/dashboard"
           />
 
           <SidebarButton
             :show-label="isSidebarOpen"
-            label="Add Locations"
+            :label="$t('sidebar.add_location')"
             icon="tabler:flag-plus"
             href="/dashboard/add"
           />
-        </div>
-        <div class="my-4 border-t border-base-content/10" />
+          <div class="my-4 border-t border-base-content/10" />
 
-        <SidebarButton
-          :show-label="isSidebarOpen"
-          label="Sign Out"
-          icon="tabler:logout-2"
-          href="/sign-out"
-        />
+          <SidebarButton
+            :show-label="isSidebarOpen"
+            :label="$t('sidebar.sign_out')"
+            icon="tabler:logout-2"
+            href="/sign-out"
+          />
+        </div>
         <!-- SidebarFooter -->
         <div class="mt-auto pt-4 flex flex-col border-t border-base-content/10">
           <SidebarButton
             :show-label="isSidebarOpen"
-            label="Open Sidebar"
+            :label="$t('sidebar.open_sidebar')"
             icon="tabler:layout-sidebar-left-collapse"
             icon-closed="tabler:layout-sidebar-left-expand"
             :on-click="toggleSidebar"
@@ -49,6 +49,8 @@ function toggleSidebar() {
         </div>
       </div>
     </div>
-    <div class="flex-1" />
+    <div class="flex-1">
+      <NuxtPage />
+    </div>
   </div>
 </template>
