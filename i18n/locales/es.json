@@ -1,0 +1,12 @@
+{
+  "sidebar": {
+    "locations": "Ubicaciones",
+    "add_location": "Añadir Ubicación",
+    "sign_out": "Cerrar Sesión"
+  },
+  "add_locations": {
+    "add_title": "Añadir Ubicación",
+    "add_description": "Una ubicación es un lugar al que has viajado o viajarás. Puede ser una ciudad, país, estado o punto de interés. Podrás añadir fechas específicas de tu visita después de guardarla."
+
+  }
+}
