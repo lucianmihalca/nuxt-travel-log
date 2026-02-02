@@ -14,6 +14,7 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     "@nuxtjs/i18n",
     "@vee-validate/nuxt",
+    "nuxt-csurf",
   ],
   i18n: {
     defaultLocale: "en",

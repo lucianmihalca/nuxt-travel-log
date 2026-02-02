@@ -14,7 +14,8 @@
       "latitude": "Latitude",
       "longitude": "Longitude",
       "submit": "Add",
-      "cancel": "Cancel"
+      "cancel": "Cancel",
+      "unsavedconfirm": "Are you sure you want to leave? All unsaved changes will be lost."
     }
   }
 }
