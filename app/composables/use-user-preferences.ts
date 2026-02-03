@@ -1,4 +1,6 @@
 export async function useUserPreferences() {
+  const { $csrfFetch } = useNuxtApp();
+
   // SSR-friendly state using a Cookie (prevents layout shift)
   const isSidebarOpen = useCookie<boolean>("is_sidebar_open", {
     default: () => true,
@@ -18,7 +20,7 @@ export async function useUserPreferences() {
   // 3. Debounce for database persistence
   const debouncedSave = useDebounceFn(async (value: boolean) => {
     try {
-      await $fetch("/api/user-preferences", {
+      await $csrfFetch("/api/user-preferences", {
         method: "PATCH",
         body: { sidebarOpen: value },
       });
