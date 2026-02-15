@@ -1,5 +1,6 @@
-import db from "~~/lib/db";
-import { insertLocationSchema, location } from "~~/lib/db/schema";
+import { findLocationByName, findUniqueSlug, insertLocation } from "~~/lib/db/queries/location";
+import { insertLocationSchema } from "~~/lib/db/schema";
+import slugify from "slug";
 
 export default defineEventHandler(async (event) => {
   if (!event.context.user) {
@@ -33,11 +34,30 @@ export default defineEventHandler(async (event) => {
     }));
   }
 
-  const [created] = await db.insert(location).values({
-    ...result.data,
-    slug: result.data.name.replaceAll(" ", "-").toLowerCase(),
-    userId: event.context.user.id,
-  }).returning();
+  const existingLocation = await findLocationByName(result.data, event.context.user.id);
 
-  return created;
+  if (existingLocation) {
+    throw createError({
+      statusCode: 409,
+      statusMessage: "A location with that name already exists!",
+    });
+  }
+
+  const slug = await findUniqueSlug(slugify(result.data.name));
+
+  try {
+    return insertLocation(result.data, slug, event.context.user.id);
+  }
+  catch (e) {
+    const error = e as Error & { cause?: { code?: string } };
+
+    if (error.cause?.code === "SQLITE_CONSTRAINT") {
+      return sendError(event, createError({
+        statusCode: 409,
+        statusMessage: "Slug must be unique (the location name is used to generate the slug)",
+      }));
+    }
+
+    throw error;
+  }
 });
