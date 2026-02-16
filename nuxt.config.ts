@@ -1,3 +1,4 @@
+import "dotenv/config";
 import tailwindcss from "@tailwindcss/vite";
 
 import "./lib/env";
@@ -33,7 +34,7 @@ export default defineNuxtConfig({
   },
   vite: {
     plugins: [
-      tailwindcss(),
+      tailwindcss() as any,
     ],
   },
   colorMode: {
