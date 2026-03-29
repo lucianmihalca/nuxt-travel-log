@@ -13,3 +13,6 @@ export const LongSchema = z.coerce.number({ error: "Required" }).min(-180).max(1
 export const DateSchema = z.number({
   error: "Date is required",
 });
+export const UserPreferencesSchema = z.object({
+  sidebarOpen: z.boolean(),
+});
