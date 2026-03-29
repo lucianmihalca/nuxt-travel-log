@@ -13,6 +13,13 @@ function toggleSidebar() {
       :class=" isSidebarOpen ? 'w-64 px-2' : 'w-16'"
     >
       <div class="flex flex-col gap-1 flex-1 py-2">
+        <SidebarButton
+          :show-label="isSidebarOpen"
+          :label="$t('sidebar.open_sidebar')"
+          icon="tabler:layout-sidebar-left-collapse"
+          icon-closed="tabler:layout-sidebar-left-expand"
+          :on-click="toggleSidebar"
+        />
         <!-- SidebarContent -->
         <div class="flex flex-col gap-1">
           <SidebarButton
@@ -28,23 +35,15 @@ function toggleSidebar() {
             icon="tabler:flag-plus"
             href="/dashboard/add"
           />
-          <div class="my-4 border-t border-base-content/10" />
+        </div>
 
+        <!-- SidebarFooter -->
+        <div class="mt-auto pt-4 flex flex-col border-t border-base-content/10">
           <SidebarButton
             :show-label="isSidebarOpen"
             :label="$t('sidebar.sign_out')"
             icon="tabler:logout-2"
             href="/sign-out"
-          />
-        </div>
-        <!-- SidebarFooter -->
-        <div class="mt-auto pt-4 flex flex-col border-t border-base-content/10">
-          <SidebarButton
-            :show-label="isSidebarOpen"
-            :label="$t('sidebar.open_sidebar')"
-            icon="tabler:layout-sidebar-left-collapse"
-            icon-closed="tabler:layout-sidebar-left-expand"
-            :on-click="toggleSidebar"
           />
         </div>
       </div>

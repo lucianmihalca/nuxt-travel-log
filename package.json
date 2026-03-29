@@ -14,7 +14,7 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@libsql/client": "^0.17.0",
+    "@libsql/client": "^0.17.2",
     "@nuxt/eslint": "1.12.1",
     "@nuxt/icon": "2.1.1",
     "@nuxtjs/color-mode": "4.0.0",
@@ -25,10 +25,10 @@
     "@vee-validate/zod": "^4.15.1",
     "@vueuse/core": "^14.1.0",
     "@vueuse/nuxt": "^14.1.0",
-    "better-auth": "1.2.4",
+    "better-auth": "1.5.6",
     "concurrently": "^9.2.1",
-    "drizzle-orm": "^0.40.1",
-    "drizzle-zod": "^0.7.0",
+    "drizzle-orm": "^0.45.1",
+    "drizzle-zod": "^0.8.3",
     "eslint": "^9.39.2",
     "nanoid": "^5.1.6",
     "nuxt": "^4.2.2",
@@ -38,7 +38,7 @@
     "tailwindcss": "^4.1.18",
     "vue": "^3.5.26",
     "vue-router": "^4.6.4",
-    "zod": "3.25.76"
+    "zod": "4.3.6"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^6.7.3",
@@ -47,14 +47,14 @@
     "@types/slug": "^5.0.9",
     "daisyui": "^5.5.14",
     "dotenv": "^17.3.1",
-    "drizzle-kit": "^0.31.8",
+    "drizzle-kit": "^0.31.10",
     "eslint-plugin-format": "^1.1.0",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7"
   },
   "pnpm": {
     "overrides": {
-      "zod": "3.25.76"
+      "zod": "4.3.6"
     }
   },
   "lint-staged": {

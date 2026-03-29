@@ -5,7 +5,7 @@ export const user = sqliteTable("user", {
   name: text().notNull(),
   email: text().notNull().unique(),
   emailVerified: integer({ mode: "boolean" }).notNull(),
-  image: text("image"),
+  image: text(),
   createdAt: integer().notNull(),
   updatedAt: integer().notNull(),
   sidebarOpen: integer({ mode: "boolean" }).default(true),
@@ -19,14 +19,14 @@ export const session = sqliteTable("session", {
   updatedAt: integer().notNull(),
   ipAddress: text(),
   userAgent: text(),
-  userId: text().notNull().references(() => user.id, { onDelete: "cascade" }),
+  userId: int().notNull().references(() => user.id, { onDelete: "cascade" }),
 });
 
 export const account = sqliteTable("account", {
   id: int().primaryKey({ autoIncrement: true }),
   accountId: text().notNull(),
   providerId: text().notNull(),
-  userId: text().notNull().references(() => user.id, { onDelete: "cascade" }),
+  userId: int().notNull().references(() => user.id, { onDelete: "cascade" }),
   accessToken: text(),
   refreshToken: text(),
   idToken: text(),

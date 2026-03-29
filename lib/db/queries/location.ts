@@ -6,10 +6,9 @@ import type { InsertLocation } from "../schema";
 import db from "..";
 import { location, locationLog } from "../schema";
 
-// Generador de IDs cortos para el slug únicos.
 const nanoId = customAlphabet("1234567890abcdefghijklmnopqrstuvwxyz", 5);
 
-// Buscar UNA location por slug + userId (con sus logs relacionados)
+// Find ONE location by slug + userId (with related logs)
 export async function findLocation(slug: string, userId: number) {
   return db.query.location.findFirst({
     where: and(
@@ -24,14 +23,14 @@ export async function findLocation(slug: string, userId: number) {
   });
 }
 
-// Listar TODAS las locations de un usuario
+// List ALL locations for a user
 export async function findLocations(userId: number) {
   return db.query.location.findMany({
     where: eq(location.userId, userId),
   });
 }
 
-// Buscar por nombre (para validar duplicados)
+// Find by name (to validate duplicates)
 export async function findLocationByName(
   existing: InsertLocation,
   userId: number,
@@ -44,14 +43,14 @@ export async function findLocationByName(
   });
 }
 
-// Buscar por slug (para generar slugs únicos)
+// Find by slug (to generate unique slugs)
 export async function findLocationBySlug(slug: string) {
   return db.query.location.findFirst({
     where: eq(location.slug, slug),
   });
 }
 
-// Generar un slug único — si ya existe, le añade un sufijo random
+// Generate a unique slug — if it already exists, append a random suffix
 export async function findUniqueSlug(slug: string) {
   let existing = !!(await findLocationBySlug(slug));
   while (existing) {
@@ -65,7 +64,6 @@ export async function findUniqueSlug(slug: string) {
   return slug;
 }
 
-// Insertar nueva location
 export async function insertLocation(
   insertable: InsertLocation,
   slug: string,
@@ -79,7 +77,6 @@ export async function insertLocation(
   return created;
 }
 
-// Actualizar por slug
 export async function updateLocationBySlug(
   updates: InsertLocation,
   slug: string,
@@ -94,7 +91,7 @@ export async function updateLocationBySlug(
   ).returning();
   return updated;
 }
-// Eliminar por slug
+
 export async function removeLocationBySlug(
   slug: string,
   userId: number,
