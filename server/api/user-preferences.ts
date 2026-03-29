@@ -1,5 +1,6 @@
 import db from "~~/lib/db";
 import { user } from "~~/lib/db/schema";
+import { UserPreferencesSchema } from "~~/lib/zod-schemas";
 import { eq } from "drizzle-orm";
 
 export default defineEventHandler(async (event) => {
@@ -17,7 +18,7 @@ export default defineEventHandler(async (event) => {
     const result = await db
       .select({ sidebarOpen: user.sidebarOpen })
       .from(user)
-      .where(eq(user.id, Number(currentUser.id)))
+      .where(eq(user.id, currentUser.id))
       .limit(1);
 
     return { sidebarOpen: result[0]?.sidebarOpen ?? true };
@@ -25,12 +26,12 @@ export default defineEventHandler(async (event) => {
 
   // PATCH - Update preference
   if (event.method === "PATCH") {
-    const body = await readBody(event);
+    const body = await readValidatedBody(event, UserPreferencesSchema.parse);
 
     await db
       .update(user)
       .set({ sidebarOpen: body.sidebarOpen })
-      .where(eq(user.id, Number(currentUser.id)));
+      .where(eq(user.id, currentUser.id));
 
     return { success: true };
   }
